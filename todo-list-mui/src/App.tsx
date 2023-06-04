@@ -1,8 +1,12 @@
+import Button from '@mui/material/Button';
+import { StyledEngineProvider } from '@mui/material/styles';
 import './App.css';
 
 function App() {
   return (
-    <h1>Hello World</h1>
+    <StyledEngineProvider injectFirst>
+      <Button variant="outlined">Hello World</Button>
+    </StyledEngineProvider>
   );
 }
 

@@ -1,4 +1,8 @@
 /* reset default styles */
+
+body{
+	font-family: 'Roboto', sans-serif;
+}
 *,
 *::before,
 *::after {
@@ -28,4 +32,3 @@ h6 {
 img {
 	vertical-align: top;
 }
-
