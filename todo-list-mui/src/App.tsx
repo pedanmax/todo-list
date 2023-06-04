@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   return (
     <StyledEngineProvider injectFirst>
-      <Container maxWidth="lg">
+      <Container>
         <Header />
         <main>
           <Form />

@@ -10,14 +10,14 @@ function Header() {
         component="h1"
         fontSize={38}
         fontWeight={700}
-        color="yellow"
+        color="#1565C0"
         sx={{
           textAlign: 'center',
         }}
       >
         Todo list
       </Typography>
-      <FormatListNumberedIcon sx={{ color: 'yellow', width: '40px', height: '40px' }} />
+      <FormatListNumberedIcon sx={{ color: '#1565C0', width: '40px', height: '40px' }} />
     </header>
   );
 }
