@@ -11,12 +11,13 @@ export interface FormValues {
   titleTask:string,
   desc:string,
   importance: string,
-  submitCount: number,
+  numberTask: number,
 }
 
 export interface TaskFields {
   title: string,
   isChecked: boolean,
+  descState: string,
 }
 
 export interface TodosProps {

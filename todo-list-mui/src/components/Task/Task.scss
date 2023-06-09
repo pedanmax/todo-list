@@ -1,18 +1,33 @@
 .task{
+  position: relative;
   display: flex;
+  justify-content: space-between;
   align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 20px;
   &:not(:last-child){
     margin-bottom: 10px;
   }
+}
+.task-wrapper{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  flex: 1 1 auto;
+  gap: 10px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.task-head{
+  display: flex;
+  gap: 10px;
+  width: 100%;
 }
 .task-number{
   color: #034489;
   width: 60px;
   height: 56px;
   box-sizing: border-box;
-  border: 1px solid #307bcb;
+  border: 1px solid #376392;
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -20,4 +35,28 @@
 }
 .custom-checkbox-root .MuiSvgIcon-root{
   font-size: 30px;
+}
+.task-desc{
+  position: relative;
+  width: 100%;
+}
+.desc-title{
+  color: #04274d;
+  margin-bottom: 10px;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  &::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 1.5px;
+    background-color: #04274d;
+    transition: all 0.3s ease;
+  }
+  &:hover::after{
+    width: 100%;
+  }
 }

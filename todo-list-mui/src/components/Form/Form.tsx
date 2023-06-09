@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
+import { useState } from 'react';
 import { TextField, Stack } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import ButtonComponent from '../ButtonComponent/ButtonComponent';
@@ -8,12 +9,13 @@ import { FormValues, AddingTodoFunc } from '../../types/types';
 import './Form.scss';
 
 const Form = ({ addTodoToState } : { addTodoToState: AddingTodoFunc }) => {
+  const [id, setId] = useState(0);
   const form = useForm<FormValues>({
     defaultValues: {
       titleTask: '',
       desc: '',
       importance: '',
-      submitCount: 0,
+      numberTask: 0,
     },
   });
   const {
@@ -23,7 +25,15 @@ const Form = ({ addTodoToState } : { addTodoToState: AddingTodoFunc }) => {
   const { submitCount } = formState;
   const onSubmit = (data: FormValues) => {
     console.log(data);
-    addTodoToState(data);
+    const submitedData = {
+      titleTask: data.titleTask,
+      desc: data.desc,
+      importance: data.importance,
+      numberTask: submitCount,
+    };
+    console.log(submitCount);
+    setId(submitCount);
+    addTodoToState(submitedData);
     reset();
   };
   return (

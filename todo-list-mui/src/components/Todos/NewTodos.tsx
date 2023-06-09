@@ -2,7 +2,7 @@
 /* eslint-disable react/no-array-index-key */
 import { useState, useEffect } from 'react';
 import Task from '../Task/Task';
-import { FormValues, TodosProps } from '../../types/types';
+import { TodosProps } from '../../types/types';
 import './Todos.scss';
 
 const NewTodos = ({ todos } : TodosProps) => {
@@ -13,7 +13,7 @@ const NewTodos = ({ todos } : TodosProps) => {
         {todos && todos.map((todo, index) => {
           return (
             <li key={index} className="todos-item">
-              <Task submitCount={index + 1} titleTask={todo.titleTask} desc={todo.desc} importance={todo.importance} />
+              <Task numberTask={index + 1} titleTask={todo.titleTask} desc={todo.desc} importance={todo.importance} />
             </li>
           );
         })}
