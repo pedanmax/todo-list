@@ -4,23 +4,26 @@ import { TextField, Stack } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import ButtonComponent from '../ButtonComponent/ButtonComponent';
 import SelectComponent from '../SelectComponent/SelectComponent';
-import { FormValues } from '../../types/types';
+import { FormValues, AddingTodoFunc } from '../../types/types';
 import './Form.scss';
 
-const Form = () => {
+const Form = ({ addTodoToState } : { addTodoToState: AddingTodoFunc }) => {
   const form = useForm<FormValues>({
     defaultValues: {
-      title: '',
+      titleTask: '',
       desc: '',
       importance: '',
+      submitCount: 0,
     },
   });
   const {
     register, handleSubmit, formState, reset,
   } = form;
   const { errors } = formState;
+  const { submitCount } = formState;
   const onSubmit = (data: FormValues) => {
     console.log(data);
+    addTodoToState(data);
     reset();
   };
   return (
@@ -37,12 +40,12 @@ const Form = () => {
           label='Title todo'
           type='text'
           {...register(
-            'title',
+            'titleTask',
             { required: 'Title is required' },
           )}
-          error={!!errors.title}
-          helperText={errors.title?.message}
-          sx={{ flex: '1 1 25%' }}
+          error={!!errors.titleTask}
+          helperText={errors.titleTask?.message}
+          sx={{ flex: '1 1 25%', cursor: 'pointer' }}
         />
         <TextField
           label='Description todo'
@@ -50,7 +53,7 @@ const Form = () => {
           {...register('desc', { required: 'Description is required' })}
           error={!!errors.desc}
           helperText={errors.desc?.message}
-          sx={{ flex: '1 1 25%' }}
+          sx={{ flex: '1 1 25%', cursor: 'pointer' }}
         />
         <SelectComponent refProp={register} error={!!errors.importance} />
         <ButtonComponent />

@@ -1,0 +1,29 @@
+.todos-block{
+  flex: 1 1 45%;
+  padding: 10px;
+  border: 2px solid #1784f8;
+  min-height: 400px;
+  border-radius: 5px;
+}
+.title{
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: #005fc4 ;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.new{
+
+}
+.done{
+
+}
+.todos-item{
+  &:not(:last-child){
+    margin-bottom: 20px;
+  }
+}
+.custom-checkbox-root .MuiSvgIcon-root{
+
+}
