@@ -4,8 +4,9 @@
 import { useState, useEffect } from 'react';
 
 import {
-  TextField, FormControlLabel, Checkbox,
+  TextField, FormControlLabel, Checkbox, Button, IconButton,
 } from '@mui/material';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import TextAreaComponent from '../TextAreaComponent/TextAreaComponent';
 import { TaskFields, FormValues, TaskProps } from '../../types/types';
 import './Task.scss';
@@ -27,25 +28,21 @@ const style = {
     boxShadow: 6,
   },
   '& .MuiSvgIcon-root': {
-    fontSize: '2.5rem',
+    fontSize: '1.5rem',
   },
 };
 
-const Task = ({ formValues, changeTodoFunc } : TaskProps) => {
+const Task = ({ formValues, changeTodoFunc, removeTodo } : TaskProps) => {
   const {
-    id, titleTask, description, importance, numberTask,
+    id, titleTask, description, importance, numberTask, isChecked,
   } = formValues;
   const [title, setTitle] = useState(titleTask);
-  const [isChecked, setIsChecked] = useState(false);
+  const [isCheckedState, setIsCheckedState] = useState(isChecked);
   const [descState, setDescState] = useState(description);
-  const [stateTask, setStateTask] = useState<FormValues>({
-    titleTask, isChecked, description, id, importance,
-  });
-
   const [descIsOpen, setDescIsOpen] = useState(false);
 
   const handleChangeCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(event.target.checked);
+    setIsCheckedState(event.target.checked);
   };
 
   const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,17 +55,18 @@ const Task = ({ formValues, changeTodoFunc } : TaskProps) => {
 
   const handleVisibilityDesc = () => setDescIsOpen((prev) => !prev);
 
+  const removeTodoFunc = () => removeTodo(id);
+
   useEffect(() => {
     changeTodoFunc({
       titleTask: title,
       description: descState,
       importance,
       id,
-      isChecked,
+      isChecked: isCheckedState,
     });
-  }, [isChecked, descState, title]);
+  }, [isCheckedState, descState, title]);
 
-  // console.log(stateTask);
   return (
     <div className="task">
       <div className='task-wrapper'>
@@ -91,7 +89,7 @@ const Task = ({ formValues, changeTodoFunc } : TaskProps) => {
             className="desc-title"
             onClick={handleVisibilityDesc}
           >
-            Read description...
+            {descIsOpen ? 'Hide description' : 'Read description'}
           </h6>
           <TextAreaComponent
             changeState={handleChangeDesc}
@@ -103,18 +101,36 @@ const Task = ({ formValues, changeTodoFunc } : TaskProps) => {
       <FormControlLabel
         sx={{
           '&.MuiFormControlLabel-root': {
-            margin: '-4px 0px 0px 0px',
+            margin: '0px 0px 0px 0px',
           },
         }}
         control={(
           <Checkbox
-            checked={isChecked}
+            checked={isCheckedState}
             onChange={handleChangeCheckBox}
             sx={style}
           />
             )}
         label=''
       />
+      <IconButton
+        onClick={removeTodoFunc}
+        sx={{
+          width: '42px',
+          height: '42px',
+          minWidth: 0,
+          '&.MuiIconButton-root': {
+            boxShadow: 3,
+            transition: 'all .3s ease',
+          },
+          '&:hover': {
+            boxShadow: 6,
+            border: 'none',
+          },
+        }}
+      >
+        <HighlightOffIcon color='primary' sx={{ height: '1.4em', width: '1.4em' }} />
+      </IconButton>
     </div>
   );
 };

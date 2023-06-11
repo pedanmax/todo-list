@@ -25,11 +25,13 @@ export interface TaskFields {
 export interface TodosProps {
   todos:FormValues[],
   folowingTodo: (value: FormValues) => void,
+  removeTodo: (value: number) => void,
 }
 
 export interface TaskProps {
   formValues: FormValues,
   changeTodoFunc: (value: FormValues) => void,
+  removeTodo: (value: number) => void,
 }
 
 export type AddingTodoFunc = (value: FormValues) => void;

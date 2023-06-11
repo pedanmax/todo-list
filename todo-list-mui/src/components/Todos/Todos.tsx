@@ -6,7 +6,7 @@ import './Todos.scss';
 import { FormValues, TodosProps } from '../../types/types';
 
 const Todos = (props : TodosProps) => {
-  const { todos, folowingTodo } = props;
+  const { todos, folowingTodo, removeTodo } = props;
   return (
     <Stack
       direction={{ xs: 'column', sm: 'row' }}
@@ -16,7 +16,7 @@ const Todos = (props : TodosProps) => {
         justifyContent: 'space-between',
       }}
     >
-      <NewTodos todos={todos} folowingTodo={folowingTodo} />
+      <NewTodos todos={todos} folowingTodo={folowingTodo} removeTodo={removeTodo} />
       <DoneTodos />
     </Stack>
   );

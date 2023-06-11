@@ -5,24 +5,25 @@ import Task from '../Task/Task';
 import { TodosProps } from '../../types/types';
 import './Todos.scss';
 
-const NewTodos = ({ todos, folowingTodo } : TodosProps) => {
+const NewTodos = ({ todos, folowingTodo, removeTodo } : TodosProps) => {
   return (
     <div className='todos-block new'>
       <h1 className="title">My todo</h1>
       <ul className="todos">
         {todos && todos.map((todo, index) => {
           return (
-            <li key={index} className="todos-item">
+            <li key={todo.id} className="todos-item">
               <Task
                 formValues={{
                   numberTask: index + 1,
                   titleTask: todo.titleTask,
                   description: todo.description,
                   importance: todo.importance,
-                  isChecked: false,
+                  isChecked: todo.isChecked,
                   id: todo.id,
                 }}
                 changeTodoFunc={folowingTodo}
+                removeTodo={removeTodo}
               />
             </li>
           );
