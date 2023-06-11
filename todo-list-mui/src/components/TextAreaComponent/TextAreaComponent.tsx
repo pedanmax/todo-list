@@ -2,7 +2,7 @@
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
 
-const TextAreaComponent = ({ changeState, value } : { changeState: (event: React.ChangeEvent<HTMLTextAreaElement>) => void, value:string }) => {
+const TextAreaComponent = ({ changeState, value, visibility } : { changeState: (event: React.ChangeEvent<HTMLTextAreaElement>) => void, value:string, visibility: boolean }) => {
   const grey = {
     50: '#f6f8fa',
     100: '#eaeef2',
@@ -28,6 +28,8 @@ const TextAreaComponent = ({ changeState, value } : { changeState: (event: React
     border: 1.35px solid #376392 ;
     ;
     box-sizing: border-box;
+    // transition: all 0.3s ease;
+    display: ${visibility ? 'block' : 'none'};
     &:hover {
       border:1.35px solid #000;
     }

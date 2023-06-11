@@ -9,30 +9,27 @@ import { FormValues, AddingTodoFunc } from '../../types/types';
 import './Form.scss';
 
 const Form = ({ addTodoToState } : { addTodoToState: AddingTodoFunc }) => {
-  const [id, setId] = useState(0);
   const form = useForm<FormValues>({
     defaultValues: {
       titleTask: '',
-      desc: '',
+      description: '',
       importance: '',
-      numberTask: 0,
+      id: 0,
+      isChecked: false,
     },
   });
   const {
     register, handleSubmit, formState, reset,
   } = form;
   const { errors } = formState;
-  const { submitCount } = formState;
   const onSubmit = (data: FormValues) => {
-    console.log(data);
     const submitedData = {
       titleTask: data.titleTask,
-      desc: data.desc,
+      description: data.description,
       importance: data.importance,
-      numberTask: submitCount,
+      id: Math.floor(Math.random() * 100),
+      isChecked: false,
     };
-    console.log(submitCount);
-    setId(submitCount);
     addTodoToState(submitedData);
     reset();
   };
@@ -56,14 +53,16 @@ const Form = ({ addTodoToState } : { addTodoToState: AddingTodoFunc }) => {
           error={!!errors.titleTask}
           helperText={errors.titleTask?.message}
           sx={{ flex: '1 1 25%', cursor: 'pointer' }}
+          autoComplete='off'
         />
         <TextField
           label='Description todo'
           type='text'
-          {...register('desc', { required: 'Description is required' })}
-          error={!!errors.desc}
-          helperText={errors.desc?.message}
+          {...register('description', { required: 'Description is required' })}
+          error={!!errors.description}
+          helperText={errors.description?.message}
           sx={{ flex: '1 1 25%', cursor: 'pointer' }}
+          autoComplete='off'
         />
         <SelectComponent refProp={register} error={!!errors.importance} />
         <ButtonComponent />

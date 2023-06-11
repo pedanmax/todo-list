@@ -1,10 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useState, useEffect } from 'react';
 
 import {
-  TextField, FormControlLabel, Checkbox, TextareaAutosize,
+  TextField, FormControlLabel, Checkbox,
 } from '@mui/material';
 import TextAreaComponent from '../TextAreaComponent/TextAreaComponent';
-import { TaskFields, FormValues } from '../../types/types';
+import { TaskFields, FormValues, TaskProps } from '../../types/types';
 import './Task.scss';
 
 const style = {
@@ -28,13 +31,18 @@ const style = {
   },
 };
 
-const Task = ({
-  numberTask, titleTask, desc, importance,
-} : FormValues) => {
-  const [title, setTitle] = useState('');
+const Task = ({ formValues, changeTodoFunc } : TaskProps) => {
+  const {
+    id, titleTask, description, importance, numberTask,
+  } = formValues;
+  const [title, setTitle] = useState(titleTask);
   const [isChecked, setIsChecked] = useState(false);
-  const [descState, setDescState] = useState('');
-  const [stateTask, setStateTask] = useState<TaskFields>({ title, isChecked, descState });
+  const [descState, setDescState] = useState(description);
+  const [stateTask, setStateTask] = useState<FormValues>({
+    titleTask, isChecked, description, id, importance,
+  });
+
+  const [descIsOpen, setDescIsOpen] = useState(false);
 
   const handleChangeCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(event.target.checked);
@@ -48,10 +56,19 @@ const Task = ({
     setDescState(event.target.value);
   };
 
-  useEffect(() => {
-    setStateTask({ title, isChecked, descState });
-  }, [title, isChecked, descState]);
+  const handleVisibilityDesc = () => setDescIsOpen((prev) => !prev);
 
+  useEffect(() => {
+    changeTodoFunc({
+      titleTask: title,
+      description: descState,
+      importance,
+      id,
+      isChecked,
+    });
+  }, [isChecked, descState, title]);
+
+  // console.log(stateTask);
   return (
     <div className="task">
       <div className='task-wrapper'>
@@ -60,7 +77,7 @@ const Task = ({
             {numberTask}
           </div>
           <TextField
-            defaultValue={titleTask}
+            defaultValue={title}
             placeholder='Title your todo'
             sx={{
               flex: '1 1 auto',
@@ -70,10 +87,16 @@ const Task = ({
           />
         </div>
         <div className="task-desc">
-          <h6 className="desc-title">Read description</h6>
+          <h6
+            className="desc-title"
+            onClick={handleVisibilityDesc}
+          >
+            Read description...
+          </h6>
           <TextAreaComponent
             changeState={handleChangeDesc}
-            value={desc}
+            value={descState}
+            visibility={descIsOpen}
           />
         </div>
       </div>

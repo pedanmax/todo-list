@@ -9,9 +9,11 @@ export interface TextInputProps {
 
 export interface FormValues {
   titleTask:string,
-  desc:string,
+  description:string,
   importance: string,
-  numberTask: number,
+  id: number,
+  numberTask?: number,
+  isChecked: boolean,
 }
 
 export interface TaskFields {
@@ -22,6 +24,13 @@ export interface TaskFields {
 
 export interface TodosProps {
   todos:FormValues[],
+  folowingTodo: (value: FormValues) => void,
+}
+
+export interface TaskProps {
+  formValues: FormValues,
+  changeTodoFunc: (value: FormValues) => void,
 }
 
 export type AddingTodoFunc = (value: FormValues) => void;
+export type ChangeTodoFunc = (value: FormValues) => void;
