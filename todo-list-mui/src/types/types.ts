@@ -28,6 +28,7 @@ export interface TodosProps {
 
 export interface TaskProps {
   formValues: FormValues,
+  disabled: boolean,
 }
 
 export type Store = {
@@ -36,7 +37,3 @@ export type Store = {
   addTodoToState: (value: FormValues) => void;
   todos: FormValues[];
 };
-
-export type AddingTodoFunc = (value: FormValues) => void;
-
-export type ChangeTodoFunc = (value: FormValues) => void;

@@ -33,7 +33,7 @@ const style = {
   },
 };
 
-const Task = ({ formValues } : TaskProps) => {
+const Task = ({ formValues, disabled } : TaskProps) => {
   const {
     id, titleTask, description, importance, numberTask, isChecked,
   } = formValues;
@@ -85,6 +85,7 @@ const Task = ({ formValues } : TaskProps) => {
             }}
             onChange={handleChangeTitle}
             autoComplete='off'
+            disabled={disabled}
           />
         </div>
         <div className="task-desc">
@@ -98,6 +99,7 @@ const Task = ({ formValues } : TaskProps) => {
             changeState={handleChangeDesc}
             value={descState}
             visibility={descIsOpen}
+            disabled={disabled}
           />
         </div>
       </div>

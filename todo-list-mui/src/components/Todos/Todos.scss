@@ -13,17 +13,14 @@
   color: #005fc4 ;
   margin-bottom: 20px;
 }
-.new{
+.subtitle{
+  font-size: 18px;
+  text-align: center;
+  padding: 20px 0px;
+}
 
-}
-.done{
-  
-}
 .todos-item{
   &:not(:last-child){
     margin-bottom: 20px;
   }
-}
-.custom-checkbox-root .MuiSvgIcon-root{
-
 }

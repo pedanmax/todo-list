@@ -7,11 +7,13 @@ import './Todos.scss';
 
 const NewTodos = ({ todos } : TodosProps) => {
   const newTodos = todos.filter((todo) => !todo.isChecked);
+  const subtitle = <h4 className='subtitle'>Add new task!</h4>;
   return (
     <div className='todos-block new'>
-      <h1 className="title">My todo</h1>
+      <h1 className="title">My tasks</h1>
+      {!newTodos.length && subtitle}
       <ul className="todos">
-        {todos && newTodos.map((todo, index) => {
+        {newTodos && newTodos.map((todo, index) => {
           return (
             <li key={todo.id} className="todos-item">
               <Task
@@ -23,6 +25,7 @@ const NewTodos = ({ todos } : TodosProps) => {
                   isChecked: todo.isChecked,
                   id: todo.id,
                 }}
+                disabled={newTodos.length === 0}
               />
             </li>
           );

@@ -2,13 +2,13 @@ import Task from '../Task/Task';
 import { TodosProps } from '../../types/types';
 import './Todos.scss';
 
-const DoneTodos = ({ todos, folowingTodo, removeTodo } : TodosProps) => {
-  // const doneTodos = todos.filter((todo) => todo.isChecked);
+const DoneTodos = ({ todos } : TodosProps) => {
+  const doneTodos = todos.filter((todo) => todo.isChecked);
   return (
     <div className='todos-block done'>
-      <h1 className="title">Done todo</h1>
+      <h1 className="title">Done tasks</h1>
       <ul className="todos">
-        {todos && todos.map((todo, index) => {
+        {doneTodos && doneTodos.map((todo, index) => {
           return (
             <li key={todo.id} className="todos-item">
               <Task
@@ -20,8 +20,7 @@ const DoneTodos = ({ todos, folowingTodo, removeTodo } : TodosProps) => {
                   isChecked: todo.isChecked,
                   id: todo.id,
                 }}
-                changeTodoFunc={folowingTodo}
-                removeTodo={removeTodo}
+                disabled={doneTodos.length !== 0}
               />
             </li>
           );

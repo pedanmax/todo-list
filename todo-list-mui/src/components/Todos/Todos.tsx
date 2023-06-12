@@ -10,7 +10,7 @@ const Todos = () => {
   const { todos } = useContext(Context);
   const newTodos = todos.filter((todo) => !todo.isChecked);
   const doneTodos = todos.filter((todo) => todo.isChecked);
-  console.log(todos);
+
   return (
     <Stack
       direction={{ xs: 'column', sm: 'row' }}
@@ -23,9 +23,12 @@ const Todos = () => {
       <NewTodos
         todos={newTodos}
       />
-      <DoneTodos
-        todos={doneTodos}
-      />
+      {doneTodos.length !== 0
+        && (
+        <DoneTodos
+          todos={doneTodos}
+        />
+        )}
     </Stack>
   );
 };

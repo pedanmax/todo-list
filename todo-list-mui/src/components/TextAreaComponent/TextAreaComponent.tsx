@@ -2,7 +2,9 @@
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
 
-const TextAreaComponent = ({ changeState, value, visibility } : { changeState: (event: React.ChangeEvent<HTMLTextAreaElement>) => void, value:string, visibility: boolean }) => {
+const TextAreaComponent = ({
+  changeState, value, visibility, disabled,
+} : { changeState: (event: React.ChangeEvent<HTMLTextAreaElement>) => void, value:string, visibility: boolean, disabled: boolean }) => {
   const grey = {
     50: '#f6f8fa',
     100: '#eaeef2',
@@ -50,6 +52,7 @@ const TextAreaComponent = ({ changeState, value, visibility } : { changeState: (
       placeholder="Your description"
       defaultValue={value}
       onBlur={changeState}
+      disabled={disabled}
       sx={{
         width: '100%',
         height: '100px',

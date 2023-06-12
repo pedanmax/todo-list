@@ -21,6 +21,7 @@ function App() {
 
   const removeTodoFunc = (id: number) => {
     const filteredTodos = todos.filter((todo) => todo.id !== id);
+    localStorage.setItem('todos', JSON.stringify(filteredTodos));
     setTodos(filteredTodos);
   };
 
@@ -44,7 +45,7 @@ function App() {
           <Header />
           <main>
             <Form />
-            <Todos />
+            {todos.length !== 0 && <Todos />}
           </main>
         </Container>
       </Context.Provider>
