@@ -45,6 +45,7 @@ function App() {
           <Header />
           <main>
             <Form />
+            {todos.length === 0 && <h4 className='title-todos'>Add your first todo!</h4>}
             {todos.length !== 0 && <Todos />}
           </main>
         </Container>
