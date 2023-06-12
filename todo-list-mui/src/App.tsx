@@ -12,8 +12,8 @@ import { FormValues } from './types/types';
 import './App.css';
 
 function App() {
-  // const initialStateTodos = localStorage.getItem('todos');
-  const [todos, setTodos] = useState<FormValues[]>([]);
+  const initialStateTodos = localStorage.getItem('todos');
+  const [todos, setTodos] = useState<FormValues[]>(initialStateTodos ? JSON.parse(initialStateTodos) : []);
 
   const addTodoToState = (value: FormValues) => {
     setTodos((prev) => [...prev, value]);
@@ -25,21 +25,20 @@ function App() {
   };
 
   const updateTodos = (id: number, stateTask: FormValues) => {
-    if (todos.length) {
-      const updatedTodos = todos;
-      updatedTodos[updatedTodos.findIndex((el) => el.id === id)] = stateTask;
-      setTodos(updatedTodos);
-      // localStorage.setItem('todos', JSON.stringify(updatedTodos));
-    }
+    const updatedTodos = [...todos];
+    updatedTodos[updatedTodos.findIndex((el) => el.id === id)] = stateTask;
+    localStorage.setItem('todos', JSON.stringify(updatedTodos));
+    setTodos(updatedTodos);
   };
 
-  const ContextWrapperValue = useMemo(() => ({
+  const contextValue = useMemo(() => ({
     removeTodoFunc, updateTodos, addTodoToState, todos,
   }), [removeTodoFunc, updateTodos, addTodoToState, todos]);
+
   return (
     <StyledEngineProvider injectFirst>
       <Context.Provider
-        value={ContextWrapperValue}
+        value={contextValue}
       >
         <Container>
           <Header />
