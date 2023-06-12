@@ -19,8 +19,41 @@
   padding: 20px 0px;
 }
 
-.todos-item{
-  &:not(:last-child){
-    margin-bottom: 20px;
+.todos-urgently{
+  border: 2px solid #ff0000a3;
+  box-shadow: 0 0 18px 0px #ff0000a3;
+  margin-bottom: 10px;
+}
+
+.todos-less-urgently{
+  border: 2px solid #f6ff00b0;
+  box-shadow: 0 0 18px 0px #f6ff00b0;
+  margin-bottom: 10px;
+}
+
+.todos-not-urgently{
+  border: 2px solid #2bff00a7;
+  box-shadow: 0 0 18px 0px #2bff00a7;
+}
+.todos-urgently, .todos-less-urgently, .todos-not-urgently{
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.tasks{
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.count{
+  color:#022e7a;
+  font-size: 20px;
+}
+
+@media(max-width:450px){
+  .count{
+    font-size: 16px;
   }
 }

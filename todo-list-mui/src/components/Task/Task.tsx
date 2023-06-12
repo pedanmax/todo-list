@@ -74,9 +74,6 @@ const Task = ({ formValues, disabled } : TaskProps) => {
     <div className="task">
       <div className='task-wrapper'>
         <div className='task-head'>
-          <div className="task-number">
-            {numberTask}
-          </div>
           <TextField
             defaultValue={title}
             placeholder='Title your todo'
