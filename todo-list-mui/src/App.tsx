@@ -33,19 +33,13 @@ function App() {
     }
   };
 
-  const store = useMemo(() => {
-    return {
-      removeTodoFunc,
-      updateTodos,
-      addTodoToState,
-      todos,
-    };
-  }, []);
-
+  const ContextWrapperValue = useMemo(() => ({
+    removeTodoFunc, updateTodos, addTodoToState, todos,
+  }), [removeTodoFunc, updateTodos, addTodoToState, todos]);
   return (
     <StyledEngineProvider injectFirst>
       <Context.Provider
-        value={store}
+        value={ContextWrapperValue}
       >
         <Container>
           <Header />
