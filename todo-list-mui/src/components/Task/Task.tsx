@@ -1,14 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import {
-  TextField, FormControlLabel, Checkbox, Button, IconButton,
+  TextField, FormControlLabel, Checkbox, IconButton,
 } from '@mui/material';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import TextAreaComponent from '../TextAreaComponent/TextAreaComponent';
-import { TaskFields, FormValues, TaskProps } from '../../types/types';
+import Context from '../../Context';
+import { TaskProps } from '../../types/types';
 import './Task.scss';
 
 const style = {
@@ -32,7 +33,7 @@ const style = {
   },
 };
 
-const Task = ({ formValues, changeTodoFunc, removeTodo } : TaskProps) => {
+const Task = ({ formValues } : TaskProps) => {
   const {
     id, titleTask, description, importance, numberTask, isChecked,
   } = formValues;
@@ -41,10 +42,11 @@ const Task = ({ formValues, changeTodoFunc, removeTodo } : TaskProps) => {
   const [descState, setDescState] = useState(description);
   const [descIsOpen, setDescIsOpen] = useState(false);
 
+  const { removeTodoFunc, updateTodos } = useContext(Context);
+
   const handleChangeCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsCheckedState(event.target.checked);
   };
-
   const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
   };
@@ -55,16 +57,17 @@ const Task = ({ formValues, changeTodoFunc, removeTodo } : TaskProps) => {
 
   const handleVisibilityDesc = () => setDescIsOpen((prev) => !prev);
 
-  const removeTodoFunc = () => removeTodo(id);
-
   useEffect(() => {
-    changeTodoFunc({
-      titleTask: title,
-      description: descState,
-      importance,
+    updateTodos(
       id,
-      isChecked: isCheckedState,
-    });
+      {
+        titleTask: title,
+        description: descState,
+        importance,
+        id,
+        isChecked: isCheckedState,
+      },
+    );
   }, [isCheckedState, descState, title]);
 
   return (
@@ -114,7 +117,7 @@ const Task = ({ formValues, changeTodoFunc, removeTodo } : TaskProps) => {
         label=''
       />
       <IconButton
-        onClick={removeTodoFunc}
+        onClick={() => removeTodoFunc(id)}
         sx={{
           width: '42px',
           height: '42px',

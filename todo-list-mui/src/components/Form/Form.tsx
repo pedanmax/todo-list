@@ -1,14 +1,16 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
-import { useState } from 'react';
+import { useContext } from 'react';
 import { TextField, Stack } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import ButtonComponent from '../ButtonComponent/ButtonComponent';
 import SelectComponent from '../SelectComponent/SelectComponent';
-import { FormValues, AddingTodoFunc } from '../../types/types';
+import Context from '../../Context';
+import { FormValues } from '../../types/types';
 import './Form.scss';
 
-const Form = ({ addTodoToState } : { addTodoToState: AddingTodoFunc }) => {
+const Form = () => {
+  const { addTodoToState } = useContext(Context);
   const form = useForm<FormValues>({
     defaultValues: {
       titleTask: '',
@@ -22,8 +24,9 @@ const Form = ({ addTodoToState } : { addTodoToState: AddingTodoFunc }) => {
     register, handleSubmit, formState, reset,
   } = form;
   const { errors } = formState;
+
   const onSubmit = (data: FormValues) => {
-    const submitedData = {
+    const submitedData: FormValues = {
       titleTask: data.titleTask,
       description: data.description,
       importance: data.importance,

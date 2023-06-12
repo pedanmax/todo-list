@@ -1,62 +1,60 @@
 /* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { StyledEngineProvider } from '@mui/material/styles';
 import { Container } from '@mui/material';
 import Header from './components/Header/Header';
 import Form from './components/Form/Form';
 import Todos from './components/Todos/Todos';
-import { TaskFields, FormValues } from './types/types';
+import Context from './Context';
+import { FormValues } from './types/types';
 import './App.css';
 
 function App() {
-  const initialStateTodos = localStorage.getItem('todos');
-  const [todos, setTodos] = useState<FormValues[]>(initialStateTodos ? JSON.parse(initialStateTodos) : []);
-  const [changedTodo, setChagedTodo] = useState<FormValues>({
-    titleTask: '', description: '', importance: '', id: 0, isChecked: false,
-  });
-  const [removeTodoId, setRemoveTodoId] = useState<number>(0);
+  // const initialStateTodos = localStorage.getItem('todos');
+  const [todos, setTodos] = useState<FormValues[]>([]);
+
   const addTodoToState = (value: FormValues) => {
     setTodos((prev) => [...prev, value]);
   };
 
-  const folowingTodo = (value: FormValues) => {
-    setChagedTodo(value);
+  const removeTodoFunc = (id: number) => {
+    const filteredTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(filteredTodos);
   };
 
-  const removeTodo = (value: number) => {
-    setRemoveTodoId(value);
-  };
-
-  useEffect(() => {
+  const updateTodos = (id: number, stateTask: FormValues) => {
     if (todos.length) {
       const updatedTodos = todos;
-      updatedTodos[updatedTodos.findIndex((el) => el.id === changedTodo.id)] = changedTodo;
+      updatedTodos[updatedTodos.findIndex((el) => el.id === id)] = stateTask;
       setTodos(updatedTodos);
-      localStorage.setItem('todos', JSON.stringify(todos));
+      // localStorage.setItem('todos', JSON.stringify(updatedTodos));
     }
-  }, [changedTodo]);
+  };
 
-  // useEffect(() => localStorage.setItem('todos', JSON.stringify(todos)), [todos]);
+  const store = useMemo(() => {
+    return {
+      removeTodoFunc,
+      updateTodos,
+      addTodoToState,
+      todos,
+    };
+  }, []);
 
-  useEffect(() => {
-    const newTodos = todos;
-    const filteredTodos = newTodos.filter((todo) => todo.id !== removeTodoId);
-    setTodos(filteredTodos);
-  }, [removeTodoId]);
-
-  // console.log(removeTodoId);
-  console.log(todos);
   return (
     <StyledEngineProvider injectFirst>
-      <Container>
-        <Header />
-        <main>
-          <Form addTodoToState={addTodoToState} />
-          <Todos todos={todos} folowingTodo={folowingTodo} removeTodo={removeTodo} />
-        </main>
-      </Container>
+      <Context.Provider
+        value={store}
+      >
+        <Container>
+          <Header />
+          <main>
+            <Form />
+            <Todos />
+          </main>
+        </Container>
+      </Context.Provider>
     </StyledEngineProvider>
   );
 }

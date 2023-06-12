@@ -1,12 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
 import { Stack } from '@mui/material';
 import NewTodos from './NewTodos';
 import DoneTodos from './DoneTodos';
+import { FormValues } from '../../types/types';
 import './Todos.scss';
-import { FormValues, TodosProps } from '../../types/types';
+import Context from '../../Context';
 
-const Todos = (props : TodosProps) => {
-  const { todos, folowingTodo, removeTodo } = props;
+const Todos = () => {
+  const { todos } = useContext(Context);
+  const newTodos = todos.filter((todo) => !todo.isChecked);
+  const doneTodos = todos.filter((todo) => todo.isChecked);
+  console.log(todos);
   return (
     <Stack
       direction={{ xs: 'column', sm: 'row' }}
@@ -16,8 +20,12 @@ const Todos = (props : TodosProps) => {
         justifyContent: 'space-between',
       }}
     >
-      <NewTodos todos={todos} folowingTodo={folowingTodo} removeTodo={removeTodo} />
-      <DoneTodos />
+      <NewTodos
+        todos={newTodos}
+      />
+      <DoneTodos
+        todos={doneTodos}
+      />
     </Stack>
   );
 };
