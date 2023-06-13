@@ -29,6 +29,7 @@ const NewTodos = ({ todos } : TodosProps) => {
           variant="outlined"
           endIcon={<AddCircleIcon />}
           onClick={() => titleRef.current?.focus()}
+          sx={{ marginBottom: '40px' }}
         >
           Add todo
         </Button>

@@ -1,6 +1,5 @@
 .todos-block{
   flex: 1 1 45%;
-  padding: 10px;
   border-radius: 5px;
 }
 .new {
@@ -16,10 +15,10 @@
   margin-bottom: 20px;
 }
 .title-todos{
-    text-align: center;
-    font-size: 28px;
-    font-weight: 700;
-    color: #005fc4 ;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #005fc4 ;
 }
 .subtitle{
   font-size: 18px;
@@ -55,5 +54,8 @@
 @media(max-width:450px){
   .count{
     font-size: 16px;
+  }
+  .new .MuiButton-root{
+    width: 100%;
   }
 }
