@@ -27,5 +27,4 @@ const SelectComponent = ({ refProp, error }: { refProp: UseFormRegister<FormValu
     </FormControl>
   );
 };
-
 export default SelectComponent;
