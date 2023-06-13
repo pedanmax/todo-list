@@ -11,7 +11,7 @@ import { FormValues } from '../../types/types';
 import './Form.scss';
 
 const Form = () => {
-  const { addTodoToState } = useContext(Context);
+  const { addTodoToState, titleRef } = useContext(Context);
   const form = useForm<FormValues>({
     defaultValues: {
       titleTask: '',
@@ -34,6 +34,7 @@ const Form = () => {
       id: Math.floor(Math.random() * 100),
       isChecked: false,
     };
+
     addTodoToState(submitedData);
     reset({
       titleTask: '',
@@ -53,7 +54,7 @@ const Form = () => {
         direction={{ xs: 'column', sm: 'row' }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
       >
-        <FormControl>
+        <FormControl sx={{ flex: '1 1 25%', cursor: 'pointer' }}>
           <Controller
             control={control}
             name="titleTask"
@@ -63,10 +64,10 @@ const Form = () => {
                 value: true, message: 'Title is required',
               },
             }}
-            render={({ field: { ref, ...field } }) => (
+            render={({ field: { ...field } }) => (
               <TextField
                 {...field}
-                inputRef={ref}
+                inputRef={titleRef}
                 id="titleTask"
                 variant="outlined"
                 error={!!errors.titleTask}
@@ -77,7 +78,7 @@ const Form = () => {
           />
           <FormHelperText sx={{ color: 'red' }}>{errors.titleTask?.message}</FormHelperText>
         </FormControl>
-        <FormControl>
+        <FormControl sx={{ flex: '1 1 25%', cursor: 'pointer' }}>
           <Controller
             control={control}
             name="description"
@@ -119,7 +120,7 @@ const Form = () => {
             )}
             rules={{
               required: {
-                value: true, message: 'choise is requierd',
+                value: true, message: 'Choise is requierd',
               },
             }}
             control={control}
@@ -128,9 +129,7 @@ const Form = () => {
           />
           <FormHelperText sx={{ color: 'red' }}>{errors.importance?.message}</FormHelperText>
         </FormControl>
-        {/* <SelectComponent refProp={register} error={!!errors.importance} /> */}
         <ButtonComponent />
-
       </Stack>
     </form>
   );

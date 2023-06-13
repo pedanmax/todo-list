@@ -3,6 +3,11 @@
   padding: 10px;
   border-radius: 5px;
 }
+.new {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .title{
   text-align: center;
   font-size: 24px;
@@ -30,11 +35,9 @@
   margin-bottom: 10px;
 }
 
-.todos-not-urgently{
-
-}
 .todos-urgently, .todos-less-urgently, .todos-not-urgently{
   border-radius: 4px;
+  width: 100%;
 }
 
 .tasks{

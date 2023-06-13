@@ -35,6 +35,7 @@ export interface TaskProps {
 export type Store = {
   removeTodoFunc: (id:number) => void,
   updateTodos: (id:number, stateTask: FormValues) => void,
-  addTodoToState: (value: FormValues) => void;
-  todos: FormValues[];
+  addTodoToState: (value: FormValues) => void,
+  todos: FormValues[],
+  titleRef:React.RefObject<HTMLInputElement>,
 };

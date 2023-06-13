@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { StyledEngineProvider } from '@mui/material/styles';
 import { Container } from '@mui/material';
 import Header from './components/Header/Header';
@@ -14,7 +14,7 @@ import './App.css';
 function App() {
   const initialStateTodos = localStorage.getItem('todos');
   const [todos, setTodos] = useState<FormValues[]>(initialStateTodos ? JSON.parse(initialStateTodos) : []);
-
+  const titleRef = useRef<HTMLInputElement>(null);
   const addTodoToState = (value: FormValues) => {
     setTodos((prev) => [...prev, value]);
   };
@@ -33,8 +33,8 @@ function App() {
   };
 
   const contextValue = useMemo(() => ({
-    removeTodoFunc, updateTodos, addTodoToState, todos,
-  }), [removeTodoFunc, updateTodos, addTodoToState, todos]);
+    removeTodoFunc, updateTodos, addTodoToState, todos, titleRef,
+  }), [removeTodoFunc, updateTodos, addTodoToState, todos, titleRef]);
 
   return (
     <StyledEngineProvider injectFirst>
