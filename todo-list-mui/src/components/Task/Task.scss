@@ -7,6 +7,13 @@
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 10px;
+  transition: all 0.3s ease;
+  // add animation
+  animation-name: showingTask;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-direction: normal;
   &:not(:last-child){
     margin-bottom: 10px;
   }
@@ -54,4 +61,16 @@
 }
 .icon{
   max-width: 25px;
+}
+
+@keyframes showingTask {
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 0.5;
+  }
+  100%{
+    opacity: 1;
+  }
 }
