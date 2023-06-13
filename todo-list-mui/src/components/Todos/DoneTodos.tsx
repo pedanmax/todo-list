@@ -1,5 +1,6 @@
 import Task from '../Task/Task';
 import { TodosProps } from '../../types/types';
+import starDone from '../../assets/star-done.svg';
 import './Todos.scss';
 
 const DoneTodos = ({ todos } : TodosProps) => {
@@ -21,6 +22,7 @@ const DoneTodos = ({ todos } : TodosProps) => {
                   id: todo.id,
                 }}
                 disabled={doneTodos.length !== 0}
+                icon={starDone}
               />
             </li>
           );

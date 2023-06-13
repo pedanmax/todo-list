@@ -5,7 +5,7 @@ const ButtonComponent = () => {
   return (
     <Button
       type="submit"
-      variant="contained"
+      variant="outlined"
       endIcon={<AddCircleIcon />}
       sx={{ flex: '1 1 25%', height: '56px' }}
     >

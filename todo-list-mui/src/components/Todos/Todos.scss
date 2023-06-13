@@ -1,10 +1,10 @@
 .todos-block{
   flex: 1 1 45%;
   padding: 10px;
-  border: 2px solid #1784f8;
+  // border: 2px solid #1784f8;
   // min-height: 400px;
   border-radius: 5px;
-  background-color: #56b8e0;
+  // background-color: #56b8e0;
 }
 .title{
   text-align: center;
@@ -26,23 +26,17 @@
 }
 
 .todos-urgently{
-  border: 2px solid #ff0000a3;
-  box-shadow: 0 0 18px 0px #ff0000a3;
   margin-bottom: 10px;
 }
 
 .todos-less-urgently{
-  border: 2px solid #f6ff00b0;
-  box-shadow: 0 0 18px 0px #f6ff00b0;
   margin-bottom: 10px;
 }
 
 .todos-not-urgently{
-  border: 2px solid #2bff00a7;
-  box-shadow: 0 0 18px 0px #2bff00a7;
+
 }
 .todos-urgently, .todos-less-urgently, .todos-not-urgently{
-  padding: 10px;
   border-radius: 4px;
 }
 

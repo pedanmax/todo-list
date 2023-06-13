@@ -26,8 +26,8 @@ const TextAreaComponent = ({
     line-height: 1.5;
     border-radius: 4px;
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-    background: #56b8e0;
-    border: 1.35px solid #376392 ;
+    background: #caf7f7;
+    border: 1.35px solid #a1abbe ;
     ;
     box-sizing: border-box;
     // transition: all 0.3s ease;

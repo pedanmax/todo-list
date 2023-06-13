@@ -16,14 +16,14 @@ const SelectComponent = ({ refProp, error }: { refProp: UseFormRegister<FormValu
         label="Importance"
         defaultValue=''
         required
-        {...refProp('importance', { required: 'Choose is required' })}
+        {...refProp('importance', { required: 'Choise is required' })}
         error={error}
       >
         <MenuItem value="urgently do">Urgently do</MenuItem>
         <MenuItem value="less urgently do">Less urgently do</MenuItem>
         <MenuItem value="not urgent">Not urgent</MenuItem>
       </Select>
-      {error && <FormHelperText sx={{ color: 'red' }}>Choose is required</FormHelperText>}
+      {error && <FormHelperText sx={{ color: 'red' }}>Choise is required</FormHelperText>}
     </FormControl>
   );
 };

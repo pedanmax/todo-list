@@ -1,8 +1,10 @@
 /* eslint-disable max-len */
 /* eslint-disable react/no-array-index-key */
-import { useState, useEffect } from 'react';
 import Task from '../Task/Task';
-import { FormValues, TodosProps } from '../../types/types';
+import { TodosProps } from '../../types/types';
+import blueIcon from '../../assets/star-blue.svg';
+import blueMiddle from '../../assets/star-blue-middle.svg';
+import blueLow from '../../assets/star-blue-low.svg';
 import './Todos.scss';
 
 const NewTodos = ({ todos } : TodosProps) => {
@@ -32,6 +34,7 @@ const NewTodos = ({ todos } : TodosProps) => {
                   id: todo.id,
                 }}
                 disabled={newTodos.length === 0}
+                icon={blueIcon}
               />
             </li>
           );
@@ -53,6 +56,7 @@ const NewTodos = ({ todos } : TodosProps) => {
                   id: todo.id,
                 }}
                 disabled={newTodos.length === 0}
+                icon={blueMiddle}
               />
             </li>
           );
@@ -74,6 +78,7 @@ const NewTodos = ({ todos } : TodosProps) => {
                   id: todo.id,
                 }}
                 disabled={newTodos.length === 0}
+                icon={blueLow}
               />
             </li>
           );

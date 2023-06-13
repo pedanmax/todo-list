@@ -33,6 +33,7 @@ img {
 	vertical-align: top;
 }
 body{
-	background-color: rgb(49, 175, 253);
+	/* background-color: rgb(49, 175, 253); */
 	padding-bottom: 20px;
+	background-color: #caf7f7;
 }

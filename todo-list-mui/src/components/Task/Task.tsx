@@ -33,9 +33,9 @@ const style = {
   },
 };
 
-const Task = ({ formValues, disabled } : TaskProps) => {
+const Task = ({ formValues, disabled, icon } : TaskProps) => {
   const {
-    id, titleTask, description, importance, numberTask, isChecked,
+    id, titleTask, description, importance, isChecked,
   } = formValues;
   const [title, setTitle] = useState(titleTask);
   const [isCheckedState, setIsCheckedState] = useState(isChecked);
@@ -74,6 +74,7 @@ const Task = ({ formValues, disabled } : TaskProps) => {
     <div className="task">
       <div className='task-wrapper'>
         <div className='task-head'>
+          <img src={icon} alt="importance icon" className="icon" />
           <TextField
             defaultValue={title}
             placeholder='Title your todo'

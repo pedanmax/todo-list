@@ -1,4 +1,4 @@
-import { Typography, Container } from '@mui/material';
+import { Typography } from '@mui/material';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import './Header.scss';
 

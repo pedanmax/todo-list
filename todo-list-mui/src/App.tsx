@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { StyledEngineProvider } from '@mui/material/styles';
 import { Container } from '@mui/material';
 import Header from './components/Header/Header';

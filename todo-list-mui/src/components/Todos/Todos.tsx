@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { Stack } from '@mui/material';
 import NewTodos from './NewTodos';
 import DoneTodos from './DoneTodos';
-import { FormValues } from '../../types/types';
 import './Todos.scss';
 import Context from '../../Context';
 

@@ -29,6 +29,7 @@ export interface TodosProps {
 export interface TaskProps {
   formValues: FormValues,
   disabled: boolean,
+  icon: string,
 }
 
 export type Store = {
